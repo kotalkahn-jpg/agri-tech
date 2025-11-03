@@ -1,4 +1,4 @@
-
+// src/hooks/useScrollFadeIn.js
 import { useEffect, useRef, useState } from "react";
 
 export default function useScrollFadeIn(threshold = 0.2) {

@@ -15,7 +15,7 @@ export default function useScrollFade() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); 
+    handleScroll(); // check immediately
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);

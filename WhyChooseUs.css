@@ -16,18 +16,18 @@
 
 
 .wcus-section {
-  max-height: 900px; 
-  overflow-y: auto;  
+  /* remove max-height and overflow-y */
   padding: 10px;     
   margin: 10px auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--gap);
   align-items: center;
-  background: linear-gradient(180deg, rgba(4,16,8,0.95), rgba(8,28,18,0.95)); /* optional: keep consistent bg */
+  background: linear-gradient(180deg, rgba(4,16,8,0.95), rgba(8,28,18,0.95));
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }
+
 
 
 .wcus-section::-webkit-scrollbar {
@@ -97,14 +97,14 @@
 }
 
 .eyebrow { font-size:40px; color:var(--accent2); font-weight:600; text-transform:uppercase; letter-spacing:1px; }
-h2 { margin:10px 0 12px; font-size:30px; line-height:1.05; }
+h2 { margin:10px 0 12px; font-size:30px; line-height:1.05; color: white; }
 p.lead { color:var(--muted); margin:0 0 18px; }
 
 .benefits { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:18px; }
-.benefit { display:flex; gap:12px; align-items:flex-start; }
+.benefit { display:flex; gap:12px; align-items:flex-start;  }
 .icon { width:44px; height:44px; border-radius:10px; display:grid; place-items:center; background:linear-gradient(135deg,var(--accent1),var(--accent2)); flex-shrink:0; }
-.benefit h4 { margin:0; font-size:15px; }
-.benefit p { margin:4px 0 0; color:var(--muted); font-size:13px; }
+.benefit h4 { margin:0; font-size:15px; color: white; }
+.benefit p { margin:4px 0 0; color: white; font-size:13px; }
 
 .cta-row { display:flex; gap:12px; margin-top:12px; }
 .btn { padding:12px 18px; border-radius:12px; border:0; cursor:pointer; font-weight:600; }
@@ -281,5 +281,4 @@ p.lead { color:var(--muted); margin:0 0 18px; }
   transform: scale(0.85);
   opacity: 0;
 }
-
 

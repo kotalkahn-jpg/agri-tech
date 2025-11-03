@@ -1,158 +1,157 @@
-import React, { useEffect, useState } from "react";
-import { getServices } from "../lib/services";
-import AnimatedLottie from "../hooks/AnimatedLottie"; 
-import WhyChooseUs from "../components/WhyChooseUs"; 
+import React, { useRef } from "react";
+import AnimatedLottie from "../hooks/AnimatedLottie";
+import WhyChooseUs from "../components/WhyChooseUs";
 import OurPartners from "../components/OurPartners";
 import ServiceDescription from "../components/ServiceDescription";
+import useScrollFade from "../hooks/useScrollFade";
 
-export function ServiceDetail({service}) {
-
- 
+export function ServiceDetail({ service }) {
+  const heroFade = useScrollFade(); // hero section fade
+  const descriptionRef = useRef(null);
 
   if (!service) return <p style={{ textAlign: "center" }}>Loading...</p>;
+
+  const scrollToDescription = () => {
+    if (descriptionRef.current) {
+      descriptionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div>
       
       <section
+        ref={heroFade.ref}
         style={{
+          ...heroFade.style, 
           position: "relative",
           display: "flex",
           alignItems: "center",
-          justifyContent: "space-between",
-          padding: "80px 10%",
-          flexWrap: "wrap",
-          backgroundColor: "#f9f9f9",
+          justifyContent: "center",
+          height: "100vh",
+          padding: "40px 10%",
+          backgroundImage: `url(${service.topSectionImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          color: "white",
+          textAlign: "center",
           overflow: "hidden",
         }}
       >
         
-        <div style={{ flex: "1 1 45%", textAlign: "center" }}>
-          <div
-            style={{
-              overflow: "hidden",
-              borderRadius: "8px",
-              display: "inline-block",
-            }}
-          >
-            <img
-              src={service.topSectionImage}
-              alt={service.name}
-              style={{
-                width: "100%",
-                maxWidth: "500px",
-                borderRadius: "16px",
-                boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-                transition: "transform 1.5s ease",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.transform = "scale(1.05)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.transform = "scale(1)")
-              }
-            />
-          </div>
-        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.55)",
+            zIndex: 1,
+          }}
+        ></div>
 
        
         <div
           style={{
-            flex: "1 1 45%",
-            color: "#333",
             position: "relative",
+            zIndex: 2,
+            maxWidth: "800px",
           }}
         >
           <h1
             style={{
-              fontSize: "2.8rem",
-              fontWeight: "700",
+              fontSize: "3.2rem",
+              fontWeight: "800",
               marginBottom: "20px",
-              color: "#228B22",
-              textAlign: "justify",
-              position: "relative",
-              zIndex: 2,
+              textShadow: "0 4px 10px rgba(0,0,0,0.5)",
+              color: service.headingColor || "#32CD32",
             }}
           >
             {service.name}
           </h1>
-
-        
-          <div
-            style={{
-              position: "absolute",
-              top: "0",
-              right: "-80px",
-              width: "180px",
-              height: "180px",
-              zIndex: 1,
-            }}
-          >
-            <AnimatedLottie />
-          </div>
-
           <p
             style={{
-              fontSize: "1.2rem",
-              lineHeight: "1.7",
-              color: "#555",
+              fontSize: "1.3rem",
+              lineHeight: "1.8",
               marginBottom: "25px",
-              position: "relative",
-              zIndex: 2,
+              textShadow: "0 3px 8px rgba(0,0,0,0.5)",
             }}
           >
             {service.topSectionDescription}
           </p>
 
           
-          <div
+          <button
+            onClick={scrollToDescription}
             style={{
-              display: "flex",
-              gap: "15px",
-              marginTop: "10px",
-              flexWrap: "wrap",
+              padding: "14px 30px",
+              backgroundColor: "#228B22",
+              border: "none",
+              borderRadius: "30px",
+              color: "white",
+              fontSize: "1.1rem",
+              cursor: "pointer",
+              transition: "all 0.3s ease",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
+              animation: "bounce 2s infinite",
             }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#32CD32")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#228B22")
+            }
           >
-            {[...Array(3)].map((_, index) => (
-              <div
-                key={index}
-                style={{
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  backgroundColor: "#228B22",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  fontSize: "1.2rem",
-                  animation: `spin 3s linear infinite`,
-                  animationDelay: `${index * 0.5}s`,
-                }}
-              >
-                ⚙️
-              </div>
-            ))}
+            ↓ Scroll to details
+          </button>
+
           </div>
+
+        
+        <div
+          style={{
+            position: "absolute",
+            bottom: "20px",
+            right: "20px",
+            width: "180px",
+            height: "180px",
+            zIndex: 1,
+            opacity: 0.8,
+          }}
+        >
+          <AnimatedLottie />
         </div>
       </section>
 
-      
+      {/* OTHER SECTIONS */}
       <WhyChooseUs service={service} />
-
       <OurPartners service={service} />
 
-      <ServiceDescription service={service} />
+      {/* Target section for scroll */}
+      <div ref={descriptionRef}>
+        <ServiceDescription service={service} />
+      </div>
 
-
-     
-
-     
+      {/* Animations */}
       <style>
         {`
           @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+          }
+
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+              transform: translateY(0);
+            }
+            40% {
+              transform: translateY(-10px);
+            }
+            60% {
+              transform: translateY(-5px);
+            }
           }
         `}
       </style>
