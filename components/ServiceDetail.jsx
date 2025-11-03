@@ -4,9 +4,10 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import OurPartners from "../components/OurPartners";
 import ServiceDescription from "../components/ServiceDescription";
 import useScrollFade from "../hooks/useScrollFade";
+import TestMessage from "./TestMessage";
 
 export function ServiceDetail({ service }) {
-  const heroFade = useScrollFade(); // hero section fade
+  const heroFade = useScrollFade(); 
   const descriptionRef = useRef(null);
 
   if (!service) return <p style={{ textAlign: "center" }}>Loading...</p>;
@@ -125,16 +126,32 @@ export function ServiceDetail({ service }) {
         </div>
       </section>
 
-      {/* OTHER SECTIONS */}
+     
+
+    <div>
+     
+      <section>
+        
+      </section>
+
+      
+      <TestMessage />  
       <WhyChooseUs service={service} />
       <OurPartners service={service} />
+      <ServiceDescription service={service} />
+    </div>
+  ;
 
-      {/* Target section for scroll */}
+
+
+      
+
+      
       <div ref={descriptionRef}>
         <ServiceDescription service={service} />
       </div>
 
-      {/* Animations */}
+      
       <style>
         {`
           @keyframes spin {
