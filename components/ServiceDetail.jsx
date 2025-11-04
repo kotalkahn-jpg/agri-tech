@@ -13,19 +13,17 @@ export function ServiceDetail({ service }) {
   const descriptionRef = useRef(null);
   const [loading, setLoading] = useState(true);
 
-  
+  // Loading timer
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 2000); 
+    const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  
   const scrollToDescription = () => {
     if (descriptionRef.current)
       descriptionRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
-  
   if (loading)
     return (
       <div
@@ -121,6 +119,11 @@ export function ServiceDetail({ service }) {
   if (!service)
     return <p style={{ textAlign: "center" }}>Loading service details...</p>;
 
+  
+  const heroBackground = service.topSectionImage
+    ? `url(${service.topSectionImage})`
+    : "linear-gradient(135deg, #4CAF50, #228B22)";
+
   return (
     <div>
       {/* HERO SECTION */}
@@ -133,16 +136,20 @@ export function ServiceDetail({ service }) {
           alignItems: "center",
           justifyContent: "center",
           height: "100vh",
+          minHeight: "600px", 
           padding: "40px 10%",
-          backgroundImage: `url(${service.topSectionImage})`,
+          backgroundImage: heroBackground,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           color: "white",
           textAlign: "center",
           overflow: "hidden",
+          transition: "opacity 1s ease, transform 1s ease", 
+          opacity: heroFade.style?.opacity ?? 1, 
         }}
       >
+        
         <div
           style={{
             position: "absolute",
@@ -155,6 +162,7 @@ export function ServiceDetail({ service }) {
           }}
         ></div>
 
+        
         <div
           style={{
             position: "relative",
@@ -210,6 +218,7 @@ export function ServiceDetail({ service }) {
           </button>
         </div>
 
+        {/* Lottie Animation */}
         <div
           style={{
             position: "absolute",
