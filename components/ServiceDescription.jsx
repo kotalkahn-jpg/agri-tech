@@ -21,7 +21,7 @@ export default function ServiceDescription({ service }) {
         fontFamily: "Inter, sans-serif",
       }}
     >
-      
+      {/* Header */}
       <div style={{ textAlign: "center", marginBottom: "70px" }}>
         <h4
           style={{
@@ -57,13 +57,13 @@ export default function ServiceDescription({ service }) {
         </button>
       </div>
 
-      
+      {/* Overview Sections */}
       {overviewSections.map((p, index) => (
         <div
           key={index}
           style={{
             display: "flex",
-            flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+            flexDirection: "row",
             alignItems: "center",
             gap: "50px",
             marginBottom: "70px",
@@ -114,13 +114,14 @@ export default function ServiceDescription({ service }) {
           </div>
 
           {p.imageUrl && (
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1 }} className="overview-image">
               <img
                 src={p.imageUrl}
                 alt={p.heading}
                 loading="lazy"
                 style={{
                   width: "100%",
+                  maxWidth: "400px",
                   borderRadius: "16px",
                   boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
                   transition: "transform 0.3s ease",
@@ -132,7 +133,7 @@ export default function ServiceDescription({ service }) {
         </div>
       ))}
 
-      
+      {/* Benefits */}
       {benefits.length > 0 && (
         <div style={{ marginTop: "90px" }}>
           <h2
@@ -203,7 +204,7 @@ export default function ServiceDescription({ service }) {
         </div>
       )}
 
-      
+      {/* Styles */}
       <style>
         {`
           .section-card:hover {
@@ -220,9 +221,14 @@ export default function ServiceDescription({ service }) {
             box-shadow: 0 12px 25px rgba(0,0,0,0.14);
           }
 
-          @media (max-width: 1000px) {
-            .section-card { flex-direction: column !important; padding: 30px; }
-            .section-card img { width: 100%; }
+          @media (max-width: 700px) {
+            .section-card { gap: 25px; padding: 25px; }
+            .section-card img { max-width: 250px; }
+          }
+
+          @media (max-width: 500px) {
+            .overview-image { display: none; } /* hide images */
+            .section-card { gap: 0; padding: 20px; }
           }
 
           @media (max-width: 600px) {
