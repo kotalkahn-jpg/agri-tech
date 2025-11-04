@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
 import AnimatedLottie from "../hooks/AnimatedLottie";
 import WhyChooseUs from "../components/WhyChooseUs";
 import OurPartners from "../components/OurPartners";
@@ -7,24 +9,125 @@ import useScrollFade from "../hooks/useScrollFade";
 import TestMessage from "./TestMessage";
 
 export function ServiceDetail({ service }) {
-  const heroFade = useScrollFade(); 
+  const heroFade = useScrollFade();
   const descriptionRef = useRef(null);
+  const [loading, setLoading] = useState(true);
 
-  if (!service) return <p style={{ textAlign: "center" }}>Loading...</p>;
+  
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 2000); 
+    return () => clearTimeout(timer);
+  }, []);
 
+  
   const scrollToDescription = () => {
-    if (descriptionRef.current) {
+    if (descriptionRef.current)
       descriptionRef.current.scrollIntoView({ behavior: "smooth" });
-    }
   };
+
+  
+  if (loading)
+    return (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "#ffffff",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          zIndex: 9999,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: "15px",
+          }}
+        >
+          <img
+            src="/tech2.jpg"
+            alt="Loading"
+            style={{
+              width: "280px",
+              height: "auto",
+              objectFit: "contain",
+              animation: "bounce 1s infinite",
+            }}
+          />
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "10px",
+            }}
+          >
+            <span
+              style={{
+                width: "15px",
+                height: "15px",
+                backgroundColor: "orange",
+                borderRadius: "50%",
+                display: "inline-block",
+                animation: "dotBounce 1s infinite",
+                animationDelay: "0s",
+              }}
+            ></span>
+            <span
+              style={{
+                width: "15px",
+                height: "15px",
+                backgroundColor: "orange",
+                borderRadius: "50%",
+                display: "inline-block",
+                animation: "dotBounce 1s infinite",
+                animationDelay: "0.2s",
+              }}
+            ></span>
+            <span
+              style={{
+                width: "15px",
+                height: "15px",
+                backgroundColor: "orange",
+                borderRadius: "50%",
+                display: "inline-block",
+                animation: "dotBounce 1s infinite",
+                animationDelay: "0.4s",
+              }}
+            ></span>
+          </div>
+        </div>
+
+        <style jsx>{`
+          @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+          }
+
+          @keyframes dotBounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-15px); }
+          }
+        `}</style>
+      </div>
+    );
+
+  if (!service)
+    return <p style={{ textAlign: "center" }}>Loading service details...</p>;
 
   return (
     <div>
-      
+      {/* HERO SECTION */}
       <section
         ref={heroFade.ref}
         style={{
-          ...heroFade.style, 
+          ...heroFade.style,
           position: "relative",
           display: "flex",
           alignItems: "center",
@@ -40,7 +143,6 @@ export function ServiceDetail({ service }) {
           overflow: "hidden",
         }}
       >
-        
         <div
           style={{
             position: "absolute",
@@ -53,7 +155,6 @@ export function ServiceDetail({ service }) {
           }}
         ></div>
 
-       
         <div
           style={{
             position: "relative",
@@ -72,6 +173,7 @@ export function ServiceDetail({ service }) {
           >
             {service.name}
           </h1>
+
           <p
             style={{
               fontSize: "1.3rem",
@@ -83,7 +185,6 @@ export function ServiceDetail({ service }) {
             {service.topSectionDescription}
           </p>
 
-          
           <button
             onClick={scrollToDescription}
             style={{
@@ -107,10 +208,8 @@ export function ServiceDetail({ service }) {
           >
             ↓ Scroll to details
           </button>
+        </div>
 
-          </div>
-
-        
         <div
           style={{
             position: "absolute",
@@ -126,52 +225,28 @@ export function ServiceDetail({ service }) {
         </div>
       </section>
 
-     
-
-    <div>
-     
-      <section>
-        
-      </section>
-
-      
-      <TestMessage />  
+      {/* OTHER SECTIONS */}
+      <TestMessage />
       <WhyChooseUs service={service} />
       <OurPartners service={service} />
-      <ServiceDescription service={service} />
-    </div>
-  ;
 
-
-
-      
-
-      
       <div ref={descriptionRef}>
         <ServiceDescription service={service} />
       </div>
 
-      
-      <style>
-        {`
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+      <style>{`
+        @keyframes bounce {
+          0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
           }
-
-          @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-              transform: translateY(0);
-            }
-            40% {
-              transform: translateY(-10px);
-            }
-            60% {
-              transform: translateY(-5px);
-            }
+          40% {
+            transform: translateY(-10px);
           }
-        `}
-      </style>
+          60% {
+            transform: translateY(-5px);
+          }
+        }
+      `}</style>
     </div>
   );
 }

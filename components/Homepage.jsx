@@ -16,8 +16,7 @@ export default function Homepage() {
       }}
     >
       <HeaderSection />
-
-      {/* Intro Section */}
+ 
       <section
         id="intro"
         ref={introAnim.ref}
@@ -54,7 +53,7 @@ export default function Homepage() {
         </p>
       </section>
 
-      {/* Services Section */}
+      
       <div
         id="services"
         ref={servicesAnim.ref}
