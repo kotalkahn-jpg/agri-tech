@@ -227,10 +227,8 @@ export function ServiceDetail({ service }) {
 
       {/* OTHER SECTIONS */}
       <TestMessage />
-      <div ref={descriptionRef}>
-        
-      </div>
-      
+      <div ref={descriptionRef}></div>
+      <WhyChooseUs service={service} />
       <OurPartners service={service} />
 
       <div ref={descriptionRef}>
