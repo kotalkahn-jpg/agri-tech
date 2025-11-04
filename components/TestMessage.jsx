@@ -115,43 +115,67 @@ export default function TestMessage() {
     "Community-focused approach",
     "Sustainability & impact",
     "Reliable support & guidance",
-  ].map((item, idx) => (
-    <div
-      key={idx}
-      style={{
-        backgroundColor: "#fff",
-        padding: "16px 20px",
-        borderRadius: "12px",
-        boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
-        fontWeight: "500",
-        color: "#228B22",
-        textAlign: "center",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease",
-        cursor: "pointer",
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-6px)";
-        e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.2)";
-        e.currentTarget.style.background = "#e9ffe9";
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0)";
-        e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
-        e.currentTarget.style.background = "#fff";
-      }}
-      onTouchStart={(e) => {
-        e.currentTarget.style.transform = "scale(0.98)";
-        e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
-      }}
-      onTouchEnd={(e) => {
-        e.currentTarget.style.transform = "scale(1)";
-        e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.2)";
-      }}
-    >
-      {item}
-    </div>
-  ))}
+  ].map((item, idx) => {
+    const icons = [
+      { src: "/images/mission.png", alt: "Mission" },
+      { src: "/images/business.png", alt: "Business" },
+      { src: "/images/social-justice.png", alt: "Social Justice" },
+      { src: "/images/cloud-computing.png", alt: "Cloud Computing" },
+    ];
+
+    return (
+      <div
+        key={idx}
+        style={{
+          backgroundColor: "#fff",
+          padding: "16px 20px",
+          borderRadius: "12px",
+          boxShadow: "0 4px 10px rgba(0,0,0,0.1)",
+          color: "#228B22",
+          textAlign: "center",
+          transition:
+            "transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease",
+          cursor: "pointer",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "10px",
+          fontWeight: "500",
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = "translateY(-6px)";
+          e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.2)";
+          e.currentTarget.style.background = "#e9ffe9";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = "translateY(0)";
+          e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+          e.currentTarget.style.background = "#fff";
+        }}
+        onTouchStart={(e) => {
+          e.currentTarget.style.transform = "scale(0.98)";
+          e.currentTarget.style.boxShadow = "0 4px 10px rgba(0,0,0,0.15)";
+        }}
+        onTouchEnd={(e) => {
+          e.currentTarget.style.transform = "scale(1)";
+          e.currentTarget.style.boxShadow = "0 6px 15px rgba(0,0,0,0.2)";
+        }}
+      >
+        {/* Icon */}
+        <img
+          src={icons[idx].src}
+          alt={icons[idx].alt}
+          style={{ width: "40px", height: "40px" }}
+        />
+        {/* Text */}
+        <span>{item}</span>
+      </div>
+    );
+  })}
 </div>
+
+
 
       </div>
 
