@@ -16,30 +16,19 @@ export default function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // EmailJS parameters
-    const serviceID = "YOUR_SERVICE_ID";
-    const templateID = "YOUR_TEMPLATE_ID";
-    const publicKey = "YOUR_PUBLIC_KEY";
-
-    const templateParams = {
-      name: formData.name,
-      email: formData.email,
-      message: formData.message,
-    };
+    const serviceID = "service_cj17yea";
+    const templateID = "template_xs8dzgs";
+    const publicKey = "9vZAxScS35t21eFj7";
 
     emailjs
-      .send(serviceID, templateID, templateParams, publicKey)
+      .send(serviceID, templateID, formData, publicKey)
       .then(
         (response) => {
-          alert(
-            `Thank you, ${formData.name}! Your message has been sent successfully.`
-          );
+          alert(`Thank you, ${formData.name}! Your message has been sent.`);
           setFormData({ name: "", email: "", message: "" });
         },
         (error) => {
-          alert(
-            "Oops! Something went wrong. Please try again later."
-          );
+          alert("Oops! Something went wrong. Please try again later.");
           console.error("EmailJS error:", error);
         }
       );
