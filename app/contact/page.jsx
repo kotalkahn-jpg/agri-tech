@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "../../styles/custom.css"; 
+
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: "",
@@ -20,18 +23,16 @@ export default function ContactPage() {
     const templateID = "template_xs8dzgs";
     const publicKey = "9vZAxScS35t21eFj7";
 
-    emailjs
-      .send(serviceID, templateID, formData, publicKey)
-      .then(
-        (response) => {
-          alert(`Thank you, ${formData.name}! Your message has been sent.`);
-          setFormData({ name: "", email: "", message: "" });
-        },
-        (error) => {
-          alert("Oops! Something went wrong. Please try again later.");
-          console.error("EmailJS error:", error);
-        }
-      );
+    emailjs.send(serviceID, templateID, formData, publicKey).then(
+      (response) => {
+        alert(`Thank you, ${formData.name}! Your message has been sent.`);
+        setFormData({ name: "", email: "", message: "" });
+      },
+      (error) => {
+        alert("Oops! Something went wrong. Please try again later.");
+        console.error("EmailJS error:", error);
+      }
+    );
   };
 
   return (
@@ -44,7 +45,6 @@ export default function ContactPage() {
       </div>
 
       <div className="row g-4">
-       
         <div className="col-md-7" style={{ marginLeft: "-15px" }}>
           <div
             className="card shadow-sm border-0 p-5 h-100"
@@ -101,7 +101,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-       
         <div className="col-md-5">
           <div className="card contact-right-card p-5 h-100">
             <div className="card-content">
@@ -114,7 +113,7 @@ export default function ContactPage() {
                 <span className="me-3 fs-4 text-success">&#9993;</span>
                 <div>
                   <strong>Email</strong>
-                  <p className="mb-0 text-white">support@yourcompany.com</p>
+                  <p className="mb-0 text-white">theanchoragegroup.com</p>
                 </div>
               </div>
 
@@ -122,7 +121,7 @@ export default function ContactPage() {
                 <span className="me-3 fs-4 text-success">&#9742;</span>
                 <div>
                   <strong>Phone</strong>
-                  <p className="mb-0 text-white">+265 999 123 456</p>
+                  <p className="mb-0 text-white">+265 997650057</p>
                 </div>
               </div>
 
@@ -130,7 +129,7 @@ export default function ContactPage() {
                 <span className="me-3 fs-4 text-success">&#127970;</span>
                 <div>
                   <strong>Office Address</strong>
-                  <p className="mb-0 text-white">123 Innovation Street, Lilongwe, Malawi</p>
+                  <p className="mb-0 text-white">Olympic Mall, Lilongwe, Malawi</p>
                 </div>
               </div>
             </div>
