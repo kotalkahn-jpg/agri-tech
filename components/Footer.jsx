@@ -1,36 +1,49 @@
 "use client";
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../styles/footer.css";
+import "../styles/bootstrap-replacement.css";
 
 const Footer = () => {
   return (
     <footer className="footer pt-5">
       <div className="container">
         <div className="row g-4">
-         
 
-<div className="col-lg-4 col-md-6">
-  <div className="footer-about">
-    
-    <div>
-      <h3 className="footer-title">The Anchorage Group</h3>
-      <p className="mb-4">
-        We're dedicated to delivering innovative solutions that empower businesses to thrive in the digital age.
-      </p>
-      <div className="social-links mb-4">
-        <a href="#"><i className="fab fa-facebook-f"></i></a>
-        <a href="#"><i className="fab fa-twitter"></i></a>
-        <a href="#"><i className="fab fa-instagram"></i></a>
-        <a href="#"><i className="fab fa-linkedin-in"></i></a>
-        <a href="#"><i className="fab fa-youtube"></i></a>
-      </div>
-    </div>
-  </div>
+          
+          <div className="col-lg-4 col-md-6">
+            <div className="footer-about d-flex align-items-start">
+              
+              
+              <img
+                src="/images/logo.webp"
+                alt="The Anchorage Group Logo"
+                className="footer-logo me-3"
+              />
+
+              
+              <div>
+                <h3 className="footer-title">The Anchorage Group</h3>
+                <p className="mb-4">
+                  We're dedicated to delivering innovative solutions that empower businesses to thrive in the digital age.
+                </p>
+                <div className="social-links mb-4">
+  <a href="#" className="social-link">
+    <img src="/icons/facebook.svg" alt="Facebook" />
+  </a>
+  <a href="#" className="social-link">
+    <img src="/icons/instagram.svg" alt="Instagram" />
+  </a>
+  <a href="#" className="social-link">
+    <img src="/icons/whatsapp.svg" alt="WhatsApp" />
+  </a>
+  <a href="#" className="social-link">
+    <img src="/icons/youtube.svg" alt="YouTube" />
+  </a>
 </div>
 
-
+              </div>
+            </div>
+          </div>
 
          
           <div className="col-lg-2 col-md-6">
@@ -39,7 +52,6 @@ const Footer = () => {
               <li><a href="#">About Us</a></li>
               <li><a href="#">Services</a></li>
               <li><a href="#">Products</a></li>
-             
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
@@ -56,7 +68,6 @@ const Footer = () => {
             </ul>
           </div>
 
-         
           <div className="col-lg-4 col-md-6">
             <h3 className="footer-title">Newsletter</h3>
             <p className="mb-4">
@@ -87,10 +98,10 @@ const Footer = () => {
               <div className="col-md-6 text-center text-md-start">
                 <p className="mb-0">&copy; 2025 THEANCHORAGEGROUP. All rights reserved.</p>
               </div>
-              
             </div>
           </div>
         </div>
+
       </div>
     </footer>
   );

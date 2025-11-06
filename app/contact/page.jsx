@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-
-
-import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/custom.css"; 
+import "../../styles/bootstrap-replacement.css";
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -92,12 +91,15 @@ export default function ContactPage() {
                 ></textarea>
               </div>
 
-              <button
+<div className="form-button-container">
+              <button 
                 type="submit"
                 className="btn btn-success w-100 py-2 fw-semibold"
               >
                 Send Message
+
               </button>
+              </div>
             </form>
           </div>
         </div>
