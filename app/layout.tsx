@@ -1,7 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import './globals.css';
- 
+import Footer from "../components/Footer"; // Import your footer
+
+<head>
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    rel="stylesheet"
+  />
+</head>
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,8 +28,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {children}
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}>
+        {/* Main content grows to push footer down */}
+        <main className="flex-grow">
+          {children}
+        </main>
+
+        {/* Footer appears on all pages */}
+        <Footer />
       </body>
     </html>
   );

@@ -8,6 +8,8 @@ import ServiceDescription from "../components/ServiceDescription";
 import useScrollFade from "../hooks/useScrollFade";
 import TestMessage from "./TestMessage";
 
+
+
 export function ServiceDetail({ service }) {
   const heroFade = useScrollFade();
   const descriptionRef = useRef(null);
@@ -250,4 +252,9 @@ export function ServiceDetail({ service }) {
       `}</style>
     </div>
   );
+
+  
 }
+
+ 
+
