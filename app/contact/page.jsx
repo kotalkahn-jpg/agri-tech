@@ -1,9 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
-import "../../styles/custom.css"; 
-import "../../styles/bootstrap-replacement.css";
-
+import "../../styles/bootstrap-replacement.css"; 
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -24,7 +22,7 @@ export default function ContactPage() {
     const publicKey = "9vZAxScS35t21eFj7";
 
     emailjs.send(serviceID, templateID, formData, publicKey).then(
-      (response) => {
+      () => {
         alert(`Thank you, ${formData.name}! Your message has been sent.`);
         setFormData({ name: "", email: "", message: "" });
       },
@@ -36,7 +34,7 @@ export default function ContactPage() {
   };
 
   return (
-    <section className="py-5" style={{ maxWidth: "1100px", margin: "0 auto" }}>
+    <section className="py-5 contact-page" style={{ maxWidth: "1100px", margin: "0 auto" }}>
       <div className="text-center mb-5">
         <h1 className="fw-bold text-success">Contact Us</h1>
         <p className="text-muted">
@@ -45,6 +43,7 @@ export default function ContactPage() {
       </div>
 
       <div className="row g-4">
+        {/* LEFT SIDE: Contact form */}
         <div className="col-md-7" style={{ marginLeft: "-15px" }}>
           <div
             className="card shadow-sm border-0 p-5 h-100"
@@ -91,19 +90,19 @@ export default function ContactPage() {
                 ></textarea>
               </div>
 
-<div className="form-button-container">
-              <button 
-                type="submit"
-                className="btn btn-success w-100 py-2 fw-semibold"
-              >
-                Send Message
-
-              </button>
+              <div className="form-button-container">
+                <button
+                  type="submit"
+                  className="btn btn-success w-100 py-2 fw-semibold"
+                >
+                  Send Message
+                </button>
               </div>
             </form>
           </div>
         </div>
 
+        {/*  Contact info */}
         <div className="col-md-5">
           <div className="card contact-right-card p-5 h-100">
             <div className="card-content">
@@ -137,8 +136,144 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-        </div> 
-      </div> 
+        </div>
+      </div>
+
+      
+      <style jsx>{`
+        body {
+          background-color: #eeeeee;
+          font-family: 'Segoe UI', sans-serif;
+        }
+
+        :root {
+          --bs-primary: #28a745;
+        }
+
+        .card,
+        .form-control,
+        .btn {
+          border-radius: 0 !important;
+        }
+
+        .contact-right-card {
+          position: relative;
+          color: white;
+          overflow: hidden;
+          background: url('/images/contact-background.jpg') no-repeat center center;
+          background-size: cover;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .contact-right-card::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.35);
+          z-index: 0;
+        }
+
+        .contact-right-card > .card-content {
+          position: relative;
+          z-index: 1;
+        }
+
+        @media (min-width: 768px) {
+          .contact-right-card,
+          .card.shadow-sm {
+            height: 100%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .contact-right-card,
+          .card.shadow-sm {
+            height: auto;
+          }
+        }
+
+        h1 {
+          font-size: 2.2rem;
+          font-weight: 700;
+          color: #19692c;
+          margin-bottom: 1rem;
+        }
+
+        h5 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #28a745;
+        }
+
+        p {
+          font-size: 1rem;
+          line-height: 1.6;
+          color: #444;
+        }
+
+        label {
+          font-size: 0.95rem;
+        }
+
+        .btn {
+          font-size: 1rem;
+          text-transform: none;
+        }
+
+        @media (max-width: 768px) {
+          h1 {
+            font-size: 1.8rem;
+          }
+
+          h5 {
+            font-size: 1.1rem;
+          }
+
+          p {
+            font-size: 0.95rem;
+          }
+        }
+
+        .social-links {
+          display: flex;
+          gap: 12px;
+        }
+
+        .social-link img {
+          width: 32px;
+          height: 32px;
+          transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .social-link:hover img {
+          filter: brightness(0) saturate(100%) sepia(100%) hue-rotate(90deg)
+            saturate(500%) brightness(0.9);
+          transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+          .social-link img {
+            width: 28px;
+            height: 28px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .social-link img {
+            width: 24px;
+            height: 24px;
+          }
+        }
+
+        .form-button-container {
+          margin-top: 1rem;
+        }
+      `}</style>
     </section>
   );
 }
